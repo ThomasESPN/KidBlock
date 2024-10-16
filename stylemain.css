@@ -1,0 +1,135 @@
+/* Style général pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Titre principal */
+h2, h3 {
+    color: #333;
+}
+
+/* Conteneur principal pour centrer les éléments */
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Style des champs de texte et des sélecteurs */
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* Style des boutons */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Style de la liste des profils */
+#profileList {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 100%;
+}
+
+#profileList li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#profileList li:hover {
+    background-color: #eaeaea;
+}
+
+/* Bouton supprimer à côté de chaque profil */
+#profileList li button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#profileList li button img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Style de la liste des URL bloquées */
+#blacklist {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 100%;
+}
+
+#blacklist li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#blacklist li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Style du champ de recherche */
+#searchUrlInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style de la section ajout d'URL */
+#newUrl, #addUrlBtn {
+    margin-top: 10px;
+}
+
+/* Style de la liste déroulante des profils */
+#profileSelector {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}

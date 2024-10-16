@@ -1,0 +1,48 @@
+/* Style pour la barre d'onglets */
+body {
+  width: 500px;  /* Largeur de la popup */
+  height: 400px; /* Hauteur de la popup */
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.tab-container {
+  display: flex;
+  background-color: #f1f1f1;
+  justify-content: flex-start;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+
+/* Style des boutons d'onglet */
+.tablinks {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+/* Style des onglets lorsqu'ils sont activés */
+.tablinks.active {
+  background-color: #ddd;
+  border-bottom: 3px solid #007bff; /* Soulignement pour l'onglet actif */
+}
+
+/* Cacher le contenu des onglets par défaut */
+.tabcontent {
+  display: none;
+  padding: 20px;
+  background-color: #fff;
+  height: calc(100% - 50px);
+}
+
+/* Afficher le contenu de l'onglet actif */
+.tabcontent.active {
+  display: block;
+}

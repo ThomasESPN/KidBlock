@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Selector</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Barre d'onglets -->
+  <div class="tab-container">
+    <button class="tablinks" id="selectProfileTab">Sélectionner un profil</button>
+    <button class="tablinks" id="manageProfileTab">Gestion de profil</button>
+    <button class="tablinks" id="screenTimeTab">Temps d'écran</button>
+  </div>
+
+  <!-- Onglet Sélectionner un profil -->
+  <div id="SelectProfile" class="tabcontent">
+    <h3>Sélectionner un profil</h3>
+    <select id="profileSelector">
+      <option value="default">Default</option>
+    </select>
+    <button id="changeProfileBtn">Changer de profil</button>
+    <br><br>
+    <a href="options.html" target="_blank">Gérer les profils</a>
+  </div>
+
+  <!-- Onglet Gestion de profil -->
+  <div id="ManageProfile" class="tabcontent" style="display:none">
+    <h3>Gestion de profil</h3>
+
+    <!-- Partie pour créer un nouveau profil -->
+    <label for="newProfile">Créer un nouveau profil :</label>
+    <input type="text" id="newProfile" placeholder="Nom du profil">
+    <select id="profileType">
+      <option value="adult">Adulte</option>
+      <option value="child">Enfant</option>
+    </select>
+    <button id="addProfileBtn">Ajouter le profil</button>
+
+    <hr>
+
+    <!-- Partie pour sélectionner un profil existant -->
+    <label for="selectProfile">Sélectionner un profil :</label>
+    <select id="manageProfileSelector">
+      <!-- Les options des profils seront ajoutées via JS -->
+    </select>
+
+    <h4>Blacklist des URLs pour ce profil</h4>
+    <ul id="manageBlacklist">
+      <!-- La liste des URLs blacklistées sera affichée ici, sans la possibilité de modifier le temps d'écran -->
+    </ul>
+  </div>
+
+  <!-- Onglet Temps d'écran -->
+  <div id="ScreenTime" class="tabcontent" style="display:none">
+    <h3>Temps d'écran</h3>
+    <ul id="screenTimeList">
+      <!-- La liste des sites et leur temps restant s'affichera ici -->
+    </ul>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

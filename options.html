@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gérer les profils</title>
+  <link rel="stylesheet" href="stylemain.css">
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h2>Gestion des profils</h2>
+  
+  <label for="newProfile">Nom du nouveau profil:</label>
+  <input type="text" id="newProfile" placeholder="Entrer le nom du profil">
+  
+  <label for="profileType">Type du profil:</label>
+  <select id="profileType">
+    <option value="adult">Adulte</option>
+    <option value="child">Enfant</option>
+  </select>
+
+  <button id="addProfileBtn">Ajouter un profil</button>
+
+  <h3>Profils</h3>
+  <select id="profileSelector">
+  </select>
+  <button id="deleteProfileBtn">Supprimer le profil</button>
+
+  <h3>Chercher une URL bloquée</h3>
+  <input type="text" id="searchUrlInput" placeholder="Chercher une URL bloquée">
+  
+  <h3>Gérer les URL bloquées pour le profil sélectionné</h3>
+  <input type="text" id="newUrl" placeholder="Ajouter une URL à la blacklist">
+  <button id="addUrlBtn">Ajouter une URL</button>
+
+  <ul id="blacklist"></ul>
+
+  <script src="options.js"></script>
+</body>
+</html>
