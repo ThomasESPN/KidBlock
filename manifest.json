@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Profile-Based URL Blocker",
+  "name": "KidBlock",
   "version": "1.0",
   "permissions": [
     "storage",

@@ -73,19 +73,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to display the blacklist of the selected profile
+    // Function to display the blacklist of the selected profile with checkboxes
     function displayBlacklistForProfile(profileName, searchTerm = '') {
         chrome.storage.sync.get([profileName], (result) => {
             const profileData = result[profileName];
             blacklist.innerHTML = '';  // Clear the current blacklist display
-            profileData.blacklist.forEach((entry) => {
+            profileData.blacklist.forEach((entry, index) => {
                 if (entry.url.includes(searchTerm)) {
                     const li = document.createElement('li');
-                    li.textContent = entry.url;
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.checked = true;
+                    checkbox.id = `url-${index}`;
+                    checkbox.addEventListener('change', () => {
+                        if (!checkbox.checked) {
+                            removeUrlFromBlacklist(profileName, entry.url);
+                        }
+                    });
+                    li.appendChild(checkbox);
+                    li.appendChild(document.createTextNode(` ${entry.url}`));
                     blacklist.appendChild(li);
                 }
             });
         });
-    }
+}
+
+    // Function to remove a URL from the blacklist for the selected profile
+    function removeUrlFromBlacklist(profileName, urlToRemove) {
+        chrome.storage.sync.get([profileName], (result) => {
+            const profileData = result[profileName];
+            const updatedBlacklist = profileData.blacklist.filter(entry => entry.url !== urlToRemove);
+            profileData.blacklist = updatedBlacklist;
+
+            // Save the updated profile with the removed URL
+            chrome.storage.sync.set({
+                [profileName]: profileData
+            }, () => {
+                console.log(`URL ${urlToRemove} removed from the blacklist for profile ${profileName}.`);
+                displayBlacklistForProfile(profileName);  // Refresh the blacklist display
+
+                // Notify background.js to update blocking rules
+                chrome.runtime.sendMessage({
+                    action: 'changeProfile',
+                    profile: profileName
+                });
+            });
+        });
+}
+
 
     // Function to search an URL in the blacklist
     searchUrlInput.addEventListener('input', () => {
