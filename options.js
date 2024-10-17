@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newUrlInput = document.getElementById('newUrl');
     const searchUrlInput = document.getElementById('searchUrlInput'); // Champ de recherche
     const blacklist = document.getElementById('blacklist');
+    const newPasswordInput = document.getElementById('newPassword');
+    const savePasswordBtn = document.getElementById('savePasswordBtn');
     let selectedProfile = "default";
 
     // Function to load the default blacklist from blacklist.txt
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-}
+    }
 
     // Function to remove a URL from the blacklist for the selected profile
     function removeUrlFromBlacklist(profileName, urlToRemove) {
@@ -119,9 +121,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
-}
+    }
 
-
+    savePasswordBtn.addEventListener('click', () => {
+        const newPassword = newPasswordInput.value.trim();
+        if (newPassword) {
+            chrome.storage.sync.set({ 'profilePassword': newPassword }, () => {
+                alert('Mot de passe enregistré avec succès.');
+            });
+        } else {
+            alert('Le mot de passe ne peut pas être vide.');
+        }
+    });
+    
     // Function to search an URL in the blacklist
     searchUrlInput.addEventListener('input', () => {
         const searchTerm = searchUrlInput.value.trim();

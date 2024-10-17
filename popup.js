@@ -130,6 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`Profile ${profileName} saved as the current profile.`);
         });
     }
+
+    function promptForPassword(callback) {
+        const password = prompt("Entrez votre mot de passe pour changer de profil:");
+        chrome.storage.sync.get(['profilePassword'], (result) => {
+            const storedPassword = result.profilePassword;
+            if (password === storedPassword) {
+                callback(true); // Correct password
+            } else {
+                alert('Mot de passe incorrect.');
+                callback(false); // Incorrect password
+            }
+        });
+    }
     // Event handler for adding a new profile
     addProfileBtn.addEventListener('click', () => {
         const profileName = newProfileInput.value.trim();
@@ -164,6 +177,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    changeProfileBtn.addEventListener('click', () => {
+        const selectedProfile = profileSelector.value;
+
+        // Prompt for password before changing profile
+        promptForPassword((isAuthenticated) => {
+            if (isAuthenticated) {
+                // Allow profile change
+                chrome.runtime.sendMessage({
+                    action: 'changeProfile',
+                    profile: selectedProfile
+                }, (response) => {
+                    if (response.success) {
+                        alert(`Profil ${selectedProfile} sélectionné.`);
+                    } else {
+                        alert(`Erreur lors du changement de profil : ${response.error}`);
+                    }
+                });
+            }
+        });
+    });
     // Initialize by displaying the profiles and setting up default values
     updateProfileList();
 
